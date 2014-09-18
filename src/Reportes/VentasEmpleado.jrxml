@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="168d9704-9a62-4c15-afc7-8cc8cf8beb8a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT  Empleado.Codigo_Empleado,Empleado.Nombre_Empleado,Empleado.Apellido_Empleado,
+ cliente.Nombre_Cliente,cliente.Apellido_Cliente,Factura.Fecha_Factura from Factura inner join 
+ Cliente on Cliente.Codigo_Cliente = Factura.Codigo_Cliente inner join Empleado on Factura.Codigo_Empleado =Empleado.Codigo_Empleado]]>
+	</queryString>
+	<field name="Codigo_Empleado" class="java.lang.Integer"/>
+	<field name="Nombre_Empleado" class="java.lang.String"/>
+	<field name="Apellido_Empleado" class="java.lang.String"/>
+	<field name="Nombre_Cliente" class="java.lang.String"/>
+	<field name="Apellido_Cliente" class="java.lang.String"/>
+	<field name="Fecha_Factura" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="100" y="20" width="314" height="41" uuid="26df3fd4-b544-4316-a652-c5637fb9d838"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reporte Ventas Empleados]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="24" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="4" y="3" width="100" height="20" uuid="7ef5c7d9-5049-446a-b49d-03134dcd9e76"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement x="3" y="2" width="54" height="20" uuid="80b60682-c0c1-490c-93dc-0ce65fdb64f9"/>
+				<text><![CDATA[Codigo_Empleado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="75" y="2" width="69" height="20" uuid="c6f74349-8c45-426d-b593-b89d449382ee"/>
+				<text><![CDATA[Nombre_Empleado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="157" y="2" width="67" height="20" uuid="5e876165-a2ea-42cf-9860-08333ebc6ab1"/>
+				<text><![CDATA[Apellido_Empleado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="237" y="2" width="72" height="20" uuid="7684edcd-2547-4c76-815a-a39244471af2"/>
+				<text><![CDATA[Nombre_Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="319" y="2" width="78" height="20" uuid="6e0140d8-67bb-44e6-bcf9-1148abfb93a3"/>
+				<text><![CDATA[Apellido_Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="414" y="2" width="100" height="20" uuid="81aa9c92-4c8e-4426-86c1-4366c994a5ad"/>
+				<text><![CDATA[Fecha_Factura]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement x="3" y="2" width="54" height="20" uuid="f30f17ef-add5-4c3d-a6ff-91e8ff28bd75"/>
+				<textFieldExpression><![CDATA[$F{Codigo_Empleado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="74" y="3" width="69" height="20" uuid="3ea19f45-e014-4b5d-a1e9-e9b11e7a9187"/>
+				<textFieldExpression><![CDATA[$F{Nombre_Empleado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="157" y="4" width="67" height="20" uuid="6a157ae7-de0e-46b4-9d22-ff287e249107"/>
+				<textFieldExpression><![CDATA[$F{Apellido_Empleado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="237" y="4" width="72" height="20" uuid="6c8ee98d-01a6-4cd1-84d2-d407976b22fb"/>
+				<textFieldExpression><![CDATA[$F{Nombre_Cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="319" y="4" width="78" height="20" uuid="1b6eed39-276c-49ea-b935-b17df0c84920"/>
+				<textFieldExpression><![CDATA[$F{Apellido_Cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="414" y="3" width="100" height="20" uuid="1b1d7c16-9429-435e-8725-d30cee579abb"/>
+				<textFieldExpression><![CDATA[$F{Fecha_Factura}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

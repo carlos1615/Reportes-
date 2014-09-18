@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d9b0c3f9-86c8-4393-a48d-5176ad5ad8f6">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT        Cliente.Cedula_Cliente, Cliente.Nombre_Cliente, Empleado.Nombre_Empleado, Producto.Nombre_Producto, Factura.Fecha_Factura, 
+                         Producto.Precio_Producto,Detalle_Factura.Cantidad_Factura, (Detalle_Factura.Cantidad_Factura*Producto.Precio_Producto) as Precio_Total
+FROM            Cliente INNER JOIN
+                         Factura ON dbo.Cliente.Codigo_Cliente = Factura.Codigo_Cliente INNER JOIN
+                         Detalle_Factura ON dbo.Factura.Codigo_Factura = Detalle_Factura.Codigo_Factura INNER JOIN
+                         Empleado ON Factura.Codigo_Empleado = Empleado.Codigo_Empleado INNER JOIN
+                         Producto ON Detalle_Factura.Codigo_Producto = Producto.Codigo_Producto
+						 where Nombre_Producto = 'Bebida']]>
+	</queryString>
+	<field name="Cedula_Cliente" class="java.lang.String"/>
+	<field name="Nombre_Cliente" class="java.lang.String"/>
+	<field name="Nombre_Empleado" class="java.lang.String"/>
+	<field name="Nombre_Producto" class="java.lang.String"/>
+	<field name="Fecha_Factura" class="java.sql.Date"/>
+	<field name="Precio_Producto" class="java.math.BigDecimal"/>
+	<field name="Cantidad_Factura" class="java.lang.Integer"/>
+	<field name="Precio_Total" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="70" y="12" width="403" height="43" uuid="b9ccbba2-e36e-4045-b0bb-ed3bfe3068ca"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reportes Ventas Bebidas]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="31" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="12" y="7" width="100" height="20" uuid="a090f453-c53d-4e36-abcf-50febd67851a"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="29" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="2" width="70" height="20" uuid="0129b5da-b117-4203-a54b-72d4ebb4bdbc"/>
+				<text><![CDATA[Cedula_Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="81" y="2" width="79" height="20" uuid="6489defe-de3e-438a-88c6-1c11fc35babe"/>
+				<text><![CDATA[Nombre_Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="170" y="2" width="69" height="20" uuid="c4870a84-7229-4cb4-aa60-682f5ffa68cb"/>
+				<text><![CDATA[Nombre_Empleado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="251" y="2" width="68" height="20" uuid="d2ee6c18-7458-4055-ae4f-88cf26f95d41"/>
+				<text><![CDATA[Nombre_Producto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="325" y="2" width="67" height="20" uuid="2c9cf5fb-06ef-4cb8-98a3-ced08bf9514b"/>
+				<text><![CDATA[Precio_Producto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="403" y="2" width="52" height="20" uuid="6f6b78cb-55ef-47e9-a325-348215bccd66"/>
+				<text><![CDATA[Cantidad_Factura]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="473" y="2" width="50" height="20" uuid="ac672b4d-589c-4388-b2a8-0f2a52adba6c"/>
+				<text><![CDATA[Precio_Total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement x="1" y="3" width="69" height="20" uuid="b7ebae79-30f9-46dd-a105-c5e4a12b9c25"/>
+				<textFieldExpression><![CDATA[$F{Cedula_Cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="81" y="4" width="79" height="20" uuid="fddfa638-aae5-43e4-8393-843f93d8a978"/>
+				<textFieldExpression><![CDATA[$F{Nombre_Cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="325" y="3" width="67" height="20" uuid="84d91a74-d9ac-4618-ab65-3d5d86ed1d52"/>
+				<textFieldExpression><![CDATA[$F{Precio_Producto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="170" y="4" width="69" height="20" uuid="aaf8f53d-7666-45eb-a0b0-a0bf7ab5e8ea"/>
+				<textFieldExpression><![CDATA[$F{Nombre_Empleado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="251" y="4" width="68" height="20" uuid="17f0a5cf-553b-4fbf-9329-6d10f6c239bc"/>
+				<textFieldExpression><![CDATA[$F{Nombre_Producto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="405" y="3" width="52" height="20" uuid="ce801f5e-3ef7-4d9f-a890-5c8b7771dcf1"/>
+				<textFieldExpression><![CDATA[$F{Cantidad_Factura}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="466" y="2" width="57" height="20" uuid="54cd8eb4-4e6d-45bc-9a49-59d1e5989aa3"/>
+				<textFieldExpression><![CDATA[$F{Precio_Total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5d76b2fd-46eb-46ee-ad6c-9b96d4e3e411">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\Carlos\\Documents\\NetBeansProjects\\Proyecto_Pizzeria1\\src\\Reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT        Empleado.Nombre_Empleado, Empleado.Apellido_Empleado, Empleado.Codigo_Empleado, Detalle_Factura.Precio_Factura
+FROM            Detalle_Factura INNER JOIN
+                         Factura ON Detalle_Factura.Codigo_Factura = Factura.Codigo_Factura INNER JOIN
+                         Empleado ON Factura.Codigo_Empleado = Empleado.Codigo_Empleado
+					
+GROUP BY Empleado.Nombre_Empleado, Empleado.Apellido_Empleado, Empleado.Codigo_Empleado, Detalle_Factura.Precio_Factura]]>
+	</queryString>
+	<field name="Nombre_Empleado" class="java.lang.String"/>
+	<field name="Apellido_Empleado" class="java.lang.String"/>
+	<field name="Codigo_Empleado" class="java.lang.Integer"/>
+	<field name="Precio_Factura" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="91" y="19" width="349" height="60" uuid="34c8d619-b32d-4bcc-95f3-c49175ba352b"/>
+				<textElement>
+					<font size="36"/>
+				</textElement>
+				<text><![CDATA[Ventas]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="14" y="0" width="100" height="20" uuid="cb33b6f6-538c-4c11-a7f1-e6ab923b9132"/>
+				<text><![CDATA[Codigo_Empleado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="124" y="0" width="100" height="20" uuid="0f03c8f6-2807-4a97-ace5-813c197fea46"/>
+				<text><![CDATA[Nombre_Empleado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="249" y="0" width="100" height="20" uuid="2575bfdb-87e5-4d59-a172-5eee56bf4d07"/>
+				<text><![CDATA[Apellido_Empleado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="367" y="0" width="100" height="20" uuid="be4fffba-df2e-4328-a700-f69f456d9b7a"/>
+				<text><![CDATA[Precio_Factura]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="29" splitType="Stretch">
+			<textField>
+				<reportElement x="14" y="4" width="100" height="20" uuid="7f0be491-d72b-4742-83e9-7ac38f7b01ac"/>
+				<textFieldExpression><![CDATA[$F{Codigo_Empleado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="127" y="5" width="100" height="20" uuid="68bdc548-b29c-40f6-8c53-d700330112fc"/>
+				<textFieldExpression><![CDATA[$F{Nombre_Empleado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="249" y="5" width="100" height="20" uuid="fe04e00f-c96d-4c0b-bd60-02dffa9ed9b7"/>
+				<textFieldExpression><![CDATA[$F{Apellido_Empleado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="367" y="4" width="100" height="20" uuid="fa5717cb-aca8-489d-a6f8-98fede74c20d"/>
+				<textFieldExpression><![CDATA[$F{Precio_Factura}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="28" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="46" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="74" splitType="Stretch">
+			<subreport>
+				<reportElement x="103" y="15" width="200" height="57" uuid="5a01ed7c-4089-4c28-8755-97a5cce96297"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "PromedioVentas_subreport1.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>
